@@ -10,9 +10,6 @@ import { Picker } from "@react-native-community/picker";
 import config from "../config";
 import WeatherDetails from "./components/WeatherDetails";
 
-// const WEATHER_API_KEY = "f13f99cb39d19babf5c670ddfbb52480";
-// const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?";
-
 export default function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentWeather, setCurrentWeather] = useState(null);
