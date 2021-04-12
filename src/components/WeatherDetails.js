@@ -14,6 +14,7 @@ export default function WeatherDetails({ currentWeather }) {
         <View style={styles.weatherDetailsBox}>
           <Text>{feels_like}</Text>
         </View>
+        <Text>|</Text>
         <View style={styles.weatherDetailsBox}>
           <Text>{humidity}</Text>
         </View>
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   weatherDetailsBox: {
-    flex: 1,
-    // padding: 20,
+    // flex: 1,
+    padding: 20,
   },
 });
