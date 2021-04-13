@@ -6,7 +6,6 @@ import WeatherInfo from "./components/WeatherInfo";
 import UnitsPicker from "./components/UnitsPicker";
 import { colors } from "./utils";
 import ReloadIcon from "./components/ReloadIcon";
-import { Picker } from "@react-native-community/picker";
 import config from "../config";
 import WeatherDetails from "./components/WeatherDetails";
 
@@ -38,15 +37,11 @@ export default function App() {
 
       const result = await response.json();
 
-      // console.log("Response=>", result);
-
       if (response.ok) {
         setCurrentWeather(result);
       } else {
         setCurrentWeather(result.response);
       }
-
-      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -64,13 +59,19 @@ export default function App() {
           <ReloadIcon load={load} />
           <WeatherInfo currentWeather={currentWeather} />
         </View>
-        <WeatherDetails currentWeather={currentWeather} />
+        <View style={{ alignItems: "center" }}>
+          <WeatherDetails
+            currentWeather={currentWeather}
+            unitsSystem={unitsSystem}
+          />
+        </View>
       </View>
     );
   } else if (errorMessage) {
     return (
       <View style={styles.container}>
-        <Text>{errorMessage}</Text>
+        <ReloadIcon load={load} />
+        <Text style={{ textAlign: "center" }}>{errorMessage}</Text>
         <StatusBar style="auto" />
       </View>
     );
@@ -88,7 +89,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
   },
   main: {
     flex: 1,

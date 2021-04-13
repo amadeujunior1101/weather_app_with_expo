@@ -21,14 +21,14 @@ export default function UnitsPicker({ unitsSystem, setUnitsSystem }) {
 const styles = StyleSheet.create({
   unitsSystem: {
     position: "absolute",
-    // ...Platform.select({
-    //   ios: {
-    //     top: 20,
-    //   },
-    //   android: {
-    //     top: 20,
-    //   },
-    // }),
+    ...Platform.select({
+      ios: {
+        top: 20,
+      },
+      android: {
+        top: 20,
+      },
+    }),
     top: 20,
     left: 0,
     height: 50,

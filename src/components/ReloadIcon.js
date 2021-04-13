@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
   reloadIcon: {
     position: "absolute",
     top: 60,
-    left: 30,
+    right: 30,
   },
 });
