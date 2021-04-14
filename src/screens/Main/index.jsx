@@ -1,19 +1,25 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, ScrollView, SafeAreaView, StatusBar } from "react-native";
+import { View, Text, TextInput, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FontAwesome5 } from "@expo/vector-icons";
 import config from "../../../config";
 import * as Location from "expo-location";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addNewSearch } from "../../store/PreviewSearchers/PreviewSearchers.actions";
 
 import CardItem from "../../components/CardItem"
 
 import style from "./style";
 
 const Main = () => {
+    const dispatch = useDispatch();
+
+    const result = useSelector((state) => state.preview);
+
     const [cityName, setCityName] = useState("")
     const [previewSearchers, setPreviewSearchers] = useState([])
     const [loading, setLoading] = useState(false)
-    const [errorMessage, setErrorMessage] = useState(null);
 
     function handle(event) {
         setCityName(event)
@@ -33,15 +39,21 @@ const Main = () => {
             if (result.results.length > 0) {
                 setLoading(false)
                 setCityName("")
-                setPreviewSearchers([...result.results, ...previewSearchers])
+
+                dispatch(addNewSearch(...result.results));
+                loadResultRedux();
             } else {
                 setLoading(false)
                 alert("Cidade não encontrada.")
             }
 
         } catch (error) {
-            setErrorMessage(error.message);
+            console.log(error.message);
         }
+    }
+
+    function loadResultRedux() {
+        return setPreviewSearchers([...result])
     }
 
     async function permission() {
@@ -63,13 +75,15 @@ const Main = () => {
 
             if (result.results.length > 0) {
                 setLoading(false)
-                setPreviewSearchers([...result.results, ...previewSearchers])
+                // setPreviewSearchers([...result.results, ...previewSearchers])
+                dispatch(addNewSearch(...result.results));
+                loadResultRedux();
             } else {
                 setLoading(false)
                 alert("Cidade não encontrada.")
             }
         } catch (error) {
-            setErrorMessage(error.message);
+            console.log(error.message);
         }
     }
 
