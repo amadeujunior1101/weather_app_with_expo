@@ -2,12 +2,12 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import * as Location from "expo-location";
-import WeatherInfo from "./components/WeatherInfo";
-import UnitsPicker from "./components/UnitsPicker";
-import { colors } from "./utils";
-import ReloadIcon from "./components/ReloadIcon";
-import config from "../config";
-import WeatherDetails from "./components/WeatherDetails";
+import WeatherInfo from "../../components/WeatherInfo";
+import UnitsPicker from "../../components/UnitsPicker";
+import { colors } from "../../utils";
+import ReloadIcon from "../../components/ReloadIcon";
+import config from "../../../config";
+import WeatherDetails from "../../components/WeatherDetails";
 
 export default function App() {
   const [errorMessage, setErrorMessage] = useState(null);
